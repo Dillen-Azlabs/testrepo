@@ -1,7 +1,13 @@
+--
+-- Table structure for table `appointment_form`
+--
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS `appointment_form`;
+SET FOREIGN_KEY_CHECKS=1;
+
 CREATE TABLE `appointment_form` (
                                     `uid`                 varchar(36)  NOT NULL,
                                     `booking_for`         varchar(50)  NOT NULL,
-                                    `name`                varchar(255) NOT NULL,
                                     `caregiver_full_name` varchar(100) DEFAULT NULL,
                                     `caregiver_cor`       varchar(50)  DEFAULT NULL,
                                     `caregiver_email`     varchar(50)  DEFAULT NULL,
