@@ -1,14 +1,13 @@
-package sg.ihh.ms.fms.app.rest.service;
+package sg.ihh.ms.fms.app.manager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sg.ihh.ms.fms.app.manager.PropertyManager;
 
-public class BaseService {
+public class BaseManager {
 
     protected Logger log;
 
-    public BaseService() {
+    public BaseManager() {
         // Empty Constructor
     }
 
@@ -17,14 +16,14 @@ public class BaseService {
     }
 
     protected void start(String methodName) {
-        log.debug("[{}] Start", methodName);
+        log.debug(methodName, "Start");
     }
 
     protected void completed(String methodName) {
-        log.debug("[{}] Completed", methodName);
+        log.debug(methodName, "Completed");
     }
 
-    protected String getProperty(String key) {
+    protected String getProp(String key) {
         return PropertyManager.getInstance().getProperty(key);
     }
 }

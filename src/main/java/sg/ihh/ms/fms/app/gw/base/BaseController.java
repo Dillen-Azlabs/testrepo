@@ -1,15 +1,17 @@
-package sg.ihh.ms.fms.app.rest.service;
+package sg.ihh.ms.fms.app.gw.base;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import sg.ihh.ms.fms.app.manager.PropertyManager;
 
-public class BaseService {
+public class BaseController {
 
     protected Logger log;
 
-    public BaseService() {
+    public BaseController() {
         // Empty Constructor
+
     }
 
     protected Logger getLogger(Class<?> clazz) {
@@ -27,4 +29,5 @@ public class BaseService {
     protected String getProperty(String key) {
         return PropertyManager.getInstance().getProperty(key);
     }
+
 }

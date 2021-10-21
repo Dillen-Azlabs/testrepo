@@ -33,3 +33,15 @@ CREATE TABLE `appointment_form` (
                                     `modified_dt`         datetime     DEFAULT NULL,
                                     PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `email_template`;
+
+CREATE TABLE email_template (
+                                    `uid`           varchar(36) NOT NULL,
+                                    `name`          varchar(100) NOT NULL,
+                                    `sender`        varchar(100) NOT NULL,
+                                    `recipients`    varchar(100) NOT NULL,
+                                    `subject`       varchar(100) NOT NULL,
+                                    `template`      text NOT NULL,
+                                    PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
