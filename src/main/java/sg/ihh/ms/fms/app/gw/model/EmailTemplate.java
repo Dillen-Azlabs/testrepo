@@ -72,4 +72,8 @@ public class EmailTemplate {
     public void setTemplate(String template) {
         this.template = template;
     }
+
+    public boolean isNull() {
+        return ( sender==null && recipients==null && subject==null && template==null );
+    }
 }

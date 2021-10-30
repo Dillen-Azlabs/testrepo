@@ -19,11 +19,16 @@ public class AppointmentRequest {
     @JsonProperty("modifiedDt")
     private Date modifiedDt;
 
+    @JsonProperty("languageCode")
+    @NotBlank(message = "Language Code is mandatory")
+    private String languageCode;
+
     @JsonProperty("bookingFor")
     @NotBlank(message = "Booking for is mandatory")
     private String bookingFor;
 
     @JsonProperty("caregiverFullName")
+    @Pattern(regexp = "^[a-zA-Z ]*$", message = "Allowed Value : alphabets")
     private String caregiverFullName;
 
     @JsonProperty("caregiverCountry")
@@ -37,6 +42,7 @@ public class AppointmentRequest {
     private String caregiverContact;
 
     @JsonProperty("patientFullName")
+    @Pattern(regexp = "^[a-zA-Z ]*$", message = "Allowed Value : alphabets")
     @NotBlank(message = "Patient Full Name for is mandatory")
     private String patientFullName;
 
@@ -56,6 +62,7 @@ public class AppointmentRequest {
     private String patientIdType;
 
     @JsonProperty("patientIdValue")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Allowed Value : alphanumeric")
     @NotBlank(message = "Patient ID Value is mandatory")
     private String patientIdValue;
 
@@ -101,9 +108,14 @@ public class AppointmentRequest {
     @NotBlank(message = "Hospital Source is mandatory")
     private String hospitalSource;
 
-    @JsonProperty("languageCode")
-    @NotBlank(message = "Language Code is mandatory")
-    private String languageCode;
+    @JsonProperty("sourceUrl")
+    @NotBlank(message = "Source URL is mandatory")
+    private String sourceUrl;
+
+    @JsonProperty("receiveMarketing")
+    @Pattern(regexp = "^(?:Yes|No)$", message = "Allowed Values : Yes or No")
+    @NotBlank(message = "Receive Marketing is mandatory")
+    private String receiveMarketing;
 
     public AppointmentRequest() {
         // Empty Constructor
@@ -321,5 +333,21 @@ public class AppointmentRequest {
 
     public void setLanguageCode(String languageCode) {
         this.languageCode = languageCode;
+    }
+
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public void setSourceUrl(String sourceUrl) {
+        this.sourceUrl = sourceUrl;
+    }
+
+    public String getReceiveMarketing() {
+        return receiveMarketing;
+    }
+
+    public void setReceiveMarketing(String receiveMarketing) {
+        this.receiveMarketing = receiveMarketing;
     }
 }

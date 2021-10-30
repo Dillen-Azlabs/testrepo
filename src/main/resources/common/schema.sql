@@ -1,12 +1,11 @@
 --
 -- Table structure for table `appointment_form`
 --
-SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `appointment_form`;
-SET FOREIGN_KEY_CHECKS=1;
 
 CREATE TABLE `appointment_form` (
                                     `uid`                 varchar(36)  NOT NULL,
+                                    `language_code`       varchar(5)   NOT NULL,
                                     `booking_for`         varchar(50)  NOT NULL,
                                     `caregiver_full_name` varchar(100) DEFAULT NULL,
                                     `caregiver_cor`       varchar(50)  DEFAULT NULL,
@@ -28,10 +27,11 @@ CREATE TABLE `appointment_form` (
                                     `preferred_date`      date         NOT NULL,
                                     `preferred_timeslot`  varchar(100) NOT NULL,
                                     `hospital_source`     varchar(50)  NOT NULL,
-                                    `language_code`       varchar(5)   NOT NULL,
+                                    `source_url`          varchar(200) NOT NULL,
+                                    `receive_marketing`   varchar(3)   NOT NULL,
                                     `created_dt`          datetime     DEFAULT NULL,
                                     `modified_dt`         datetime     DEFAULT NULL,
-                                    PRIMARY KEY (`uid`)
+                                    PRIMARY KEY (`uid`, `language_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `email_template`;
@@ -45,3 +45,7 @@ CREATE TABLE email_template (
                                     `template`      text NOT NULL,
                                     PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO fms.email_template (uid,name,sender,recipients,subject,template) VALUES
+    ('5560da6f-cc02-4d8b-92df-6ee550142ff5','AppointmentBooking','devops@parkwaypantai.com','devops@parkwaypantai.com','Appointment Booking','Submission Details:<br/><br/>Appointment Details:<br/><br/>Preferred Doctor:           ${preferredDoctor}<br/>Specialty: ${specialty}<br/>Preferred Hospital: ${hospitalSource}<br/>Preferred Appointment Date: ${preferredDate}<br/>Preferred Timeslot: ${preferredTimeslot}<br/>Reason For Consultation: ${reason}<br/><br/>Patient Information:<br/><br/>Name: ${patientFullName}<br/>Nationality: ${patientNationality}<br/>Country: ${patientCountry}<br/>Nearest Office: ${nearestOffice}<br/>Gender: ${patientGender}<br/>Date of birth: ${patientDob}<br/>NRIC/Passport number: ${patientIdValue}<br/>Email Address: ${patientEmail}<br/>Contact No.: ${patientContact}<br/><br/>Additional Information:<br/><br/>Requested For: ${bookingFor}<br/>Requestor: ${caregiverFullName}<br/>Requestor Email: ${caregiverEmail}<br/>Requestor Country: ${caregiverCountry}<br/>Requestor Contact No.: ${caregiverContact}');
+
