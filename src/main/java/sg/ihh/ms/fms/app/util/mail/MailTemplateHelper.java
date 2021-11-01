@@ -22,6 +22,8 @@ public class MailTemplateHelper {
 
         if (appt != null) {
 
+            text = text.replace("${sourceUrl}",             StringHelper.emptyIfNull(appt.getSourceUrl()));
+
             // Appointment Details:
             text = text.replace("${preferredDoctor}",       StringHelper.emptyIfNull(appt.getPreferredDoctor()));
             text = text.replace("${specialty}",             StringHelper.emptyIfNull(appt.getSpecialty()));
@@ -37,10 +39,13 @@ public class MailTemplateHelper {
             text = text.replace("${nearestOffice}",         StringHelper.emptyIfNull(appt.getNearestOffice()));
             text = text.replace("${patientGender}",         StringHelper.emptyIfNull(appt.getPatientGender()));
             text = text.replace("${patientDob}",            StringHelper.emptyIfNull(appt.getPatientDob()));
+            text = text.replace("${patientIdValue}",        StringHelper.emptyIfNull(appt.getPatientIdValue()));
             text = text.replace("${patientEmail}",          StringHelper.emptyIfNull(appt.getPatientEmail()));
             text = text.replace("${patientContact}",        StringHelper.emptyIfNull(appt.getPatientContact()));
 
             // Additional Information:
+
+            text = text.replace("${receiveMarketing}",      StringHelper.emptyIfNull(appt.getReceiveMarketing()));
             text = text.replace("${bookingFor}",            StringHelper.emptyIfNull(appt.getBookingFor()));
             text = text.replace("${caregiverFullName}",     StringHelper.emptyIfNull(appt.getCaregiverFullName()));
             text = text.replace("${caregiverEmail}",        StringHelper.emptyIfNull(appt.getCaregiverEmail()));
