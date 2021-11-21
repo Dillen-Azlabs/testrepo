@@ -18,15 +18,16 @@ public class AppointmentRepository extends BaseRepository {
         boolean result = false;
 
         final String sql = "INSERT INTO appointment_form (uid, language_code, booking_for, caregiver_full_name, " +
-                "caregiver_cor, caregiver_email, caregiver_contact, patient_full_name, patient_dob, " +
-                "patient_gender, patient_id_type, patient_id_value, patient_nationality, patient_cor, " +
-                "nearest_office, patient_email, patient_contact, preferred_doctor, specialty, reason, " +
-                "preferred_date, preferred_timeslot, hospital_source, source_url, receive_marketing, created_dt) " +
+                "caregiver_cor, caregiver_email, caregiver_contact, caregiver_contact_country, patient_full_name, " +
+                "patient_dob, patient_gender, patient_id_type, patient_id_value, patient_nationality, patient_cor, " +
+                "nearest_office, patient_email, patient_contact, patient_contact_country, preferred_doctor, " +
+                "specialty, reason, preferred_date, preferred_timeslot, hospital_source, source_url, " +
+                "receive_marketing, created_dt) " +
                 "VALUES(:uid, :languageCode, :bookingFor, :caregiverFullName, :caregiverCountry, :caregiverEmail, " +
-                " :caregiverContact, :patientFullName, :patientDobDB, :patientGender, :patientIdType, " +
-                " :patientIdValue, :patientNationality, :patientCountry, :nearestOffice, :patientEmail, " +
-                " :patientContact, :preferredDoctor, :specialty, :reason, :preferredDateDB, " +
-                " :preferredTimeslot, :hospitalSource, :sourceUrl, :receiveMarketing, :createdDt);";
+                " :caregiverContact, :caregiverContactCountry, :patientFullName, :patientDobDB, :patientGender, " +
+                " :patientIdType, :patientIdValue, :patientNationality, :patientCountry, :nearestOffice, " +
+                " :patientEmail, :patientContact, :patientContactCountry, :preferredDoctor, :specialty, :reason, " +
+                " :preferredDateDB, :preferredTimeslot, :hospitalSource, :sourceUrl, :receiveMarketing, :createdDt);";
 
         appt.setCreatedDt(new Date());
 

@@ -41,6 +41,9 @@ public class AppointmentRequest {
     @JsonProperty("caregiverContact")
     private String caregiverContact;
 
+    @JsonProperty("caregiverContactCountry")
+    private String caregiverContactCountry;
+
     @JsonProperty("patientFullName")
     @Pattern(regexp = "^[a-zA-Z ]*$", message = "Allowed Value : alphabets")
     @NotBlank(message = "Patient Full Name for is mandatory")
@@ -85,6 +88,9 @@ public class AppointmentRequest {
     @JsonProperty("patientContact")
     @NotBlank(message = "Patient Contact Number is mandatory")
     private String patientContact;
+
+    @JsonProperty("patientContactCountry")
+    private String patientContactCountry;
 
     @JsonProperty("preferredDoctor")
     private String preferredDoctor;
@@ -185,6 +191,14 @@ public class AppointmentRequest {
         this.caregiverContact = caregiverContact;
     }
 
+    public String getCaregiverContactCountry() {
+        return caregiverContactCountry;
+    }
+
+    public void setCaregiverContactCountry(String caregiverContactCountry) {
+        this.caregiverContactCountry = caregiverContactCountry;
+    }
+
     public String getPatientFullName() {
         return patientFullName;
     }
@@ -270,6 +284,14 @@ public class AppointmentRequest {
 
     public void setPatientContact(String patientContact) {
         this.patientContact = patientContact;
+    }
+
+    public String getPatientContactCountry() {
+        return patientContactCountry;
+    }
+
+    public void setPatientContactCountry(String patientContactCountry) {
+        this.patientContactCountry = patientContactCountry;
     }
 
     public String getPreferredDoctor() {

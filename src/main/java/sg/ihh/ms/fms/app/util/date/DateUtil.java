@@ -9,6 +9,7 @@ public class DateUtil {
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final DateTimeFormatter DATE_FORMATTER_FE = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter DATE_FORMATTER_BE = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter TIME_FORMATTER_FE = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     private DateUtil() {}
 
@@ -29,6 +30,14 @@ public class DateUtil {
         LocalDate feDate = LocalDate.parse(str, DATE_FORMATTER_FE);
         String    dbDate = DATE_FORMATTER_BE.format(feDate);
         return LocalDate.parse(dbDate, DATE_FORMATTER_BE);
+    }
+
+    public static String getTodayDate() {
+        return DATE_FORMATTER_BE.format(LocalDate.now());
+    }
+
+    public static String getCurrenTime() {
+        return TIME_FORMATTER_FE.format(LocalDateTime.now());
     }
 
 }

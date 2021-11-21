@@ -31,7 +31,9 @@ public class EmailController  extends BaseAPIController {
         }
 
         // Subject
-        request.setSubject(et.getSubject());
+        String subTemplate = et.getSubject();
+        String subject = MailTemplateHelper.buildAppointmentBookingSubject(appt, subTemplate);
+        request.setSubject(subject);
 
         // Body
         String template = et.getTemplate();
