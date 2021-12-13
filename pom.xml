@@ -142,6 +142,7 @@
 		<jdbi.version>3.21.0</jdbi.version>
 		<jasypt.version>3.0.4</jasypt.version>
 		<httpclient.version>4.5.13</httpclient.version>
+		<log4j2.version>2.15.0</log4j2.version>
 	</properties>
 
 	<build>
