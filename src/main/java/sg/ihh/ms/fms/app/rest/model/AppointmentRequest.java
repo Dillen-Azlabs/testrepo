@@ -28,7 +28,6 @@ public class AppointmentRequest {
     private String bookingFor;
 
     @JsonProperty("caregiverFullName")
-    @Pattern(regexp = "^[a-zA-Z ]*$", message = "Allowed Value : alphabets")
     private String caregiverFullName;
 
     @JsonProperty("caregiverCountry")
@@ -45,7 +44,6 @@ public class AppointmentRequest {
     private String caregiverContactCountry;
 
     @JsonProperty("patientFullName")
-    @Pattern(regexp = "^[a-zA-Z ]*$", message = "Allowed Value : alphabets")
     @NotBlank(message = "Patient Full Name for is mandatory")
     private String patientFullName;
 
