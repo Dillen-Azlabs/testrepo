@@ -36,6 +36,8 @@ CREATE TABLE `appointment_form` (
                                     PRIMARY KEY (`uid`, `language_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+ALTER TABLE fms.appointment_form ADD preferred_doctor_mcr varchar(10) NULL;
+
 DROP TABLE IF EXISTS `email_template`;
 
 CREATE TABLE email_template (

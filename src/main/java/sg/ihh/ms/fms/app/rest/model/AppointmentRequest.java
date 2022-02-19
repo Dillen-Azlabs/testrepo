@@ -93,6 +93,9 @@ public class AppointmentRequest {
     @JsonProperty("preferredDoctor")
     private String preferredDoctor;
 
+    @JsonProperty("preferredDoctorMcr")
+    private String preferredDoctorMcr;
+
     @JsonProperty("specialty")
     private String specialty;
 
@@ -298,6 +301,14 @@ public class AppointmentRequest {
 
     public void setPreferredDoctor(String preferredDoctor) {
         this.preferredDoctor = preferredDoctor;
+    }
+
+    public String getPreferredDoctorMcr() {
+        return preferredDoctorMcr;
+    }
+
+    public void setPreferredDoctorMcr(String preferredDoctorMcr) {
+        this.preferredDoctorMcr = preferredDoctorMcr;
     }
 
     public String getSpecialty() {
