@@ -9,18 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sg.ihh.ms.fms.app.gw.controller.EmailController;
 import sg.ihh.ms.fms.app.gw.model.EmailTemplate;
+import sg.ihh.ms.fms.app.model.Appointment;
 import sg.ihh.ms.fms.app.repository.AppointmentRepository;
 import sg.ihh.ms.fms.app.repository.EmailTemplateRepository;
 import sg.ihh.ms.fms.app.rest.model.AppointmentRequest;
 import sg.ihh.ms.fms.app.rest.model.AppointmentResponse;
+import sg.ihh.ms.fms.app.rest.model.AppointmentListRequest;
+import sg.ihh.ms.fms.app.rest.model.AppointmentListResponse;
 import sg.ihh.ms.fms.app.rest.model.ServiceResponse;
 import sg.ihh.ms.fms.app.util.property.Property;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "appointments", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+@RequestMapping(path = "appointments", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+        consumes = MediaType.APPLICATION_JSON_VALUE)
 public class AppointmentService extends BaseService {
 
     @Autowired
@@ -32,7 +37,7 @@ public class AppointmentService extends BaseService {
         log = getLogger(this.getClass());
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("")
     public ServiceResponse makeAppointment(@RequestBody @Valid AppointmentRequest request) {
         final String methodName = "makeAppointment";
         start(methodName);
@@ -63,4 +68,28 @@ public class AppointmentService extends BaseService {
         completed(methodName);
         return response;
     }
+
+    @PostMapping("list")
+    public ServiceResponse getAppointments(@RequestBody @Valid AppointmentListRequest request) {
+        final String methodName = "getAppointments";
+        start(methodName);
+        ServiceResponse response = new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        try {
+            List<Appointment> appointments = apptRepository.list(request);
+
+            int listSize = 0;
+            if (appointments != null) {
+                listSize = appointments.size();
+            }
+
+            response = new AppointmentListResponse(HttpStatus.OK, appointments, listSize);
+        } catch (Exception e) {
+            log.error(e.toString(), methodName);
+        }
+
+        completed(methodName);
+        return response;
+    }
+
 }
