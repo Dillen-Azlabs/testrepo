@@ -25,12 +25,12 @@ public class AppointmentRepository extends BaseRepository {
                 "caregiver_cor, caregiver_email, caregiver_contact, caregiver_contact_country, patient_full_name, " +
                 "patient_dob, patient_gender, patient_id_type, patient_id_value, patient_nationality, patient_cor, " +
                 "nearest_office, patient_email, patient_contact, patient_contact_country, preferred_doctor, " +
-                "preferred_doctor_mcr, specialty, reason, preferred_date, preferred_timeslot, hospital_source, source_url, " +
+                "medpro_url, specialty, reason, preferred_date, preferred_timeslot, hospital_source, source_url, " +
                 "receive_marketing, created_dt) " +
                 "VALUES(:uid, :languageCode, :bookingFor, :caregiverFullName, :caregiverCountry, :caregiverEmail, " +
                 " :caregiverContact, :caregiverContactCountry, :patientFullName, :patientDobDB, :patientGender, " +
                 " :patientIdType, :patientIdValue, :patientNationality, :patientCountry, :nearestOffice, " +
-                " :patientEmail, :patientContact, :patientContactCountry, :preferredDoctor, :preferredDoctorMcr, :specialty, :reason, " +
+                " :patientEmail, :patientContact, :patientContactCountry, :preferredDoctor, :medicalProfessionalURL, :specialty, :reason, " +
                 " :preferredDateDB, :preferredTimeslot, :hospitalSource, :sourceUrl, :receiveMarketing, :createdDt);";
 
         appt.setCreatedDt(new Date());
@@ -67,7 +67,7 @@ public class AppointmentRepository extends BaseRepository {
                 "patient_id_type as patientIdType, patient_id_value as patientIdValue, patient_nationality as patientNationality, " +
                 "patient_cor as patientCountry, nearest_office as nearestOffice, patient_email as patientEmail, " +
                 "patient_contact as patientContact, patient_contact_country as patientContactCountry, preferred_doctor as preferredDoctor, " +
-                "preferred_doctor_mcr as preferredDoctorMcr, specialty as specialty, reason as reason, preferred_date as preferredDate, " +
+                "medpro_url as medicalProfessionalURL, specialty as specialty, reason as reason, preferred_date as preferredDate, " +
                 "preferred_timeslot as preferredTimeslot, hospital_source as hospitalSource, source_url as sourceUrl, " +
                 "receive_marketing as receiveMarketing, created_dt as createdDt " +
                 "FROM   appointment_form " +
