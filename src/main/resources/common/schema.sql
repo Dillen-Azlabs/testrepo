@@ -52,3 +52,25 @@ CREATE TABLE email_template (
 
 INSERT INTO fms.email_template (uid,name,sender,recipients,subject,template) VALUES
     ('5560da6f-cc02-4d8b-92df-6ee550142ff5','${hospitalSource} Appt Request for ${preferredDate} ${preferredTimeslot} by ${patientFullName}','devops@parkwaypantai.com','devops@parkwaypantai.com','Appointment Booking','Submission Details:<br/><br/>Source URL: ${sourceUrl}<br/>Date of Submission: ${createdDate}<br/>Time of Submission: ${createdTime}<br/><br/>Appointment Details:<br/><br/>Preferred Doctor: ${preferredDoctor}<br/>Specialty: ${specialty}<br/>Preferred Hospital: ${hospitalSource}<br/>Preferred Appointment Date: ${preferredDate}<br/>Preferred Timeslot: ${preferredTimeslot}<br/>Reason For Consultation: ${reason}<br/><br/>Patient Information:<br/><br/>Name: ${patientFullName}<br/>Nationality: ${patientNationality}<br/>Country: ${patientCountry}<br/>Nearest Office: ${nearestOffice}<br/>Gender: ${patientGender}<br/>Date of birth: ${patientDob}<br/>NRIC/Passport number: ${patientIdValue}<br/>Email Address: ${patientEmail}<br/>Contact No.: ${patientContactCountry} ${patientContact}<br/><br/>Additional Information:<br/><br/>Receive Marketing Messages?: ${receiveMarketing}<br/>Requested For: ${bookingFor}<br/>Requestor: ${caregiverFullName}<br/>Requestor Email: ${caregiverEmail}<br/>Requestor Country: ${caregiverCountry}<br/>Requestor Contact No.: ${caregiverContactCountry} ${caregiverContact}');
+
+--
+-- Table structure for table `enquiry_form`
+--
+DROP TABLE IF EXISTS `enquiry_form`;
+
+CREATE TABLE `enquiry_form` (
+                                `uid`                 varchar(36)  NOT NULL,
+                                `language_code`       varchar(5)   NOT NULL,
+                                `full_name`           varchar(100) NOT NULL,
+                                `email`               varchar(50)  NOT NULL,
+                                `mobile_number`       varchar(20)  NOT NULL,
+                                `cor`                 varchar(200) NOT NULL,
+                                `nearest_office`      varchar(200) NOT NULL,
+                                `enquiry`             varchar(500) NOT NULL,
+                                `hospital_source`     varchar(200) NOT NULL,
+                                `source_url`          varchar(400) NOT NULL,
+                                `receive_marketing`   varchar(3)   NOT NULL,
+                                `created_dt`          datetime     DEFAULT NULL,
+                                `modified_dt`         datetime     DEFAULT NULL,
+                                PRIMARY KEY (`uid`, `language_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
