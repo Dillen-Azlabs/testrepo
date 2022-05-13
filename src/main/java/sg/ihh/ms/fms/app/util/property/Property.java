@@ -20,4 +20,6 @@ public class Property {
 
     // EMAIL TEMPLATES
     public static final String EMAIL_TEMPLATE_NAME_APPT = "email.template.name.appt";
+    public static final String EMAIL_TEMPLATE_NAME_ENQ_ADM = "email.template.name.enqAdm";
+    public static final String EMAIL_TEMPLATE_NAME_ENQ_PTN = "email.template.name.enqPtn";
 }

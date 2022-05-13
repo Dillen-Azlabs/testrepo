@@ -3,6 +3,7 @@ package sg.ihh.ms.fms.app.util.mail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sg.ihh.ms.fms.app.rest.model.AppointmentRequest;
+import sg.ihh.ms.fms.app.rest.model.EnquiryRequest;
 import sg.ihh.ms.fms.app.util.date.DateUtil;
 import sg.ihh.ms.fms.app.util.string.StringHelper;
 
@@ -71,6 +72,42 @@ public class MailTemplateHelper {
             text = text.replace("${caregiverContact}",      StringHelper.emptyIfNull(appt.getCaregiverContact()));
             text = text.replace("${caregiverContactCountry}", StringHelper.emptyIfNull(appt.getCaregiverContactCountry()));
 
+        }
+        return text;
+    }
+
+    public static String buildEnquirySubject(EnquiryRequest enquiryRequest, String template) {
+        String text = template;
+
+        if (enquiryRequest != null) {
+            // Replace placeholders with values for customized subject
+        }
+        return text;
+    }
+
+    public static String buildEnquiry(EnquiryRequest enquiryRequest, String template) {
+        String text = template;
+
+        if (enquiryRequest != null) {
+
+            text = text.replace("${createdDate}",           DateUtil.getTodayDate());
+            text = text.replace("${createdTime}",           DateUtil.getCurrenTime());
+
+            // Submission Details:
+            text = text.replace("${hospitalSource}",        StringHelper.emptyIfNull(enquiryRequest.getHospitalSource()));
+            text = text.replace("${sourceUrl}",             StringHelper.emptyIfNull(enquiryRequest.getSourceUrl()));
+
+            // Enquiry Details
+            text = text.replace("${fullName}",              StringHelper.emptyIfNull(enquiryRequest.getFullName()));
+            text = text.replace("${email}",                 StringHelper.emptyIfNull(enquiryRequest.getEmail()));
+            text = text.replace("${mobileNumber}",          StringHelper.emptyIfNull(enquiryRequest.getMobileNumber()));
+            text = text.replace("${cor}",                   StringHelper.emptyIfNull(enquiryRequest.getCor()));
+            text = text.replace("${nearestOffice}",         StringHelper.emptyIfNull(enquiryRequest.getNearestOffice()));
+
+            text = text.replace("${enquiry}",               StringHelper.emptyIfNull(enquiryRequest.getEnquiry()));
+
+            // Additional Information:
+            text = text.replace("${receiveMarketing}",      StringHelper.emptyIfNull(enquiryRequest.getReceiveMarketing()));
         }
         return text;
     }

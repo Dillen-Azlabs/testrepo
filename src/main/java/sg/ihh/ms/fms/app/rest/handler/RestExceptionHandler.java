@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import sg.ihh.ms.fms.app.rest.model.ServiceResponse;
+import sg.ihh.ms.fms.app.rest.model.BaseResponse;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
@@ -23,8 +23,8 @@ public class RestExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
-    public ServiceResponse notFound(NoHandlerFoundException e, WebRequest request) {
-        return new ServiceResponse(HttpStatus.NOT_FOUND);
+    public BaseResponse notFound(NoHandlerFoundException e, WebRequest request) {
+        return new BaseResponse(HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -43,8 +43,8 @@ public class RestExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ServiceResponse error(Exception e, WebRequest request) {
+    public BaseResponse error(Exception e, WebRequest request) {
         log.error("REST Exception", e);
-        return new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new BaseResponse(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
