@@ -6,7 +6,7 @@ import sg.ihh.ms.fms.app.model.Appointment;
 
 import java.util.List;
 
-public class AppointmentListResponse extends ServiceResponse {
+public class AppointmentListResponse extends BaseResponse {
 
     @JsonProperty("appointments")
     private List<Appointment> appointmentList;

@@ -19,6 +19,8 @@ public class AppointmentRepository extends BaseRepository {
 
     public boolean create(AppointmentRequest appt) {
         final String methodName = "create";
+        start(methodName);
+
         boolean result = false;
 
         final String sql = "INSERT INTO appointment_form (uid, language_code, booking_for, caregiver_full_name, " +

@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-import sg.ihh.ms.fms.app.rest.model.ServiceResponse;
+import sg.ihh.ms.fms.app.rest.model.BaseResponse;
 import sg.ihh.ms.fms.app.security.model.ApiKeyAuthenticationToken;
 import sg.ihh.ms.fms.app.util.json.JsonUtil;
 import sg.ihh.ms.fms.app.util.xml.XmlUtil;
@@ -49,7 +49,7 @@ public class ApiKeyAuthenticationFilter extends AbstractAuthenticationProcessing
             AuthenticationException failed) throws IOException, ServletException {
 
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        ServiceResponse sr = new ServiceResponse(HttpStatus.UNAUTHORIZED);
+        BaseResponse sr = new BaseResponse(HttpStatus.UNAUTHORIZED);
 
         if (request.getHeader("accept").contains("xml")) {
             response.setContentType("application/xml");

@@ -2,7 +2,7 @@ package sg.ihh.ms.fms.app.rest.model;
 
 import org.springframework.http.HttpStatus;
 
-public class AppointmentResponse extends ServiceResponse {
+public class AppointmentResponse extends BaseResponse {
 
     private String uid;
 

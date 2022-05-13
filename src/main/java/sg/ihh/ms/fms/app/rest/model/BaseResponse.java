@@ -2,12 +2,12 @@ package sg.ihh.ms.fms.app.rest.model;
 
 import org.springframework.http.HttpStatus;
 
-public class ServiceResponse {
+public class BaseResponse {
 
     private int code;
     private String message;
 
-    public ServiceResponse(HttpStatus status) {
+    public BaseResponse(HttpStatus status) {
         this.code = status.value();
         this.message = status.getReasonPhrase();
     }

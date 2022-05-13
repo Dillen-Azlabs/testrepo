@@ -12,19 +12,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Appointment {
-
-    @JsonProperty("uid")
-    private String uid;
-
-    @JsonProperty("createdDt")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdDt;
-
-    @JsonProperty("languageCode")
-    private String languageCode;
+public class Appointment extends BaseModel {
 
     @JsonProperty("bookingFor")
     private String bookingFor;
@@ -112,22 +100,6 @@ public class Appointment {
 
     public Appointment() {
         // Empty Constructor
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public LocalDateTime getCreatedDt() {
-        return createdDt;
-    }
-
-    public void setCreatedDt(LocalDateTime createdDt) {
-        this.createdDt = createdDt;
     }
 
     public String getBookingFor() {
@@ -320,14 +292,6 @@ public class Appointment {
 
     public void setHospitalSource(String hospitalSource) {
         this.hospitalSource = hospitalSource;
-    }
-
-    public String getLanguageCode() {
-        return languageCode;
-    }
-
-    public void setLanguageCode(String languageCode) {
-        this.languageCode = languageCode;
     }
 
     public String getSourceUrl() {

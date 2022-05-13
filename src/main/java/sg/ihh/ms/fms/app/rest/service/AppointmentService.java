@@ -16,7 +16,7 @@ import sg.ihh.ms.fms.app.rest.model.AppointmentRequest;
 import sg.ihh.ms.fms.app.rest.model.AppointmentResponse;
 import sg.ihh.ms.fms.app.rest.model.AppointmentListRequest;
 import sg.ihh.ms.fms.app.rest.model.AppointmentListResponse;
-import sg.ihh.ms.fms.app.rest.model.ServiceResponse;
+import sg.ihh.ms.fms.app.rest.model.BaseResponse;
 import sg.ihh.ms.fms.app.util.property.Property;
 
 import javax.validation.Valid;
@@ -38,10 +38,11 @@ public class AppointmentService extends BaseService {
     }
 
     @PostMapping("")
-    public ServiceResponse makeAppointment(@RequestBody @Valid AppointmentRequest request) {
+    public BaseResponse makeAppointment(@RequestBody @Valid AppointmentRequest request) {
         final String methodName = "makeAppointment";
         start(methodName);
-        ServiceResponse response = new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        BaseResponse response = new BaseResponse(HttpStatus.INTERNAL_SERVER_ERROR);
 
         // Step 1: Save to database
         String uid = UUID.randomUUID().toString();
@@ -70,10 +71,10 @@ public class AppointmentService extends BaseService {
     }
 
     @PostMapping("list")
-    public ServiceResponse getAppointments(@RequestBody @Valid AppointmentListRequest request) {
+    public BaseResponse getAppointments(@RequestBody @Valid AppointmentListRequest request) {
         final String methodName = "getAppointments";
         start(methodName);
-        ServiceResponse response = new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR);
+        BaseResponse response = new BaseResponse(HttpStatus.INTERNAL_SERVER_ERROR);
 
         try {
             List<Appointment> appointments = apptRepository.list(request);

@@ -3,11 +3,11 @@
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout
-				pattern="%d %-5level [%t] %logger{1.}: %msg%n%throwable" />
+					pattern="%d %-5level [%t] %logger{1.}: %msg%n%throwable" />
 		</Console>
 
 		<RollingFile name="RollingFile" fileName="./logs/fms.log"
-			filePattern="./logs/$${date:yyyy-MM}/fms-%d{yyyy-MM-dd}-%i.log.gz">
+					 filePattern="./logs/$${date:yyyy-MM}/fms-%d{yyyy-MM-dd}-%i.log.gz">
 			<PatternLayout>
 				<pattern>%d %p %C{1.} [%t] %m%n</pattern>
 			</PatternLayout>
@@ -27,17 +27,17 @@
 		</Logger>
 
 		<logger name="com.ulisesbocchio" level="warning"
-			additivity="false">
+				additivity="false">
 			<AppenderRef ref="RollingFile" />
 		</logger>
 
 		<logger name="com.ulisesbocchio" level="warning"
-			additivity="false">
+				additivity="false">
 			<AppenderRef ref="RollingFile" />
 		</logger>
 
 		<logger name="org.springframework" level="info"
-			additivity="false">
+				additivity="false">
 			<AppenderRef ref="RollingFile" />
 		</logger>
 
