@@ -79,5 +79,33 @@ INSERT INTO fms.email_template (uid,name,sender,recipients,subject,template) VAL
 
 INSERT INTO fms.email_template (uid,name,sender,recipients,subject,template) VALUES ('a13155ac-59ca-4bba-8179-fefc3b5ec848','EnquiryAdministrator','devops@parkwaypantai.com','intern@azlabs.sg','New enquiry','Submission Details:<br/><br/>Hospital Source: ${hospitalSource}<br/>Source URL: ${sourceUrl}<br/><br/>Enquiry Details:<br/><br/>Full Name: ${fullName}<br/>Email: ${email}<br/>Mobile Number: ${mobileNumber}<br/>Country of Residence: ${cor}<br/>Nearest Office: ${nearestOffice}<br/><br/>Enquiry: ${enquiry}<br/><br/>Receive Marketing Messages?: ${receiveMarketing}<br/>');
 
+--
+-- Table structure for table `maternity_tour_create_form`
+--
+DROP TABLE IF EXISTS `maternity_tour_create_form`;
+
+CREATE TABLE `maternity_tour_create_form` (
+    `uid`                 varchar(36)  NOT NULL,
+    `language_code`       varchar(5)   NOT NULL,
+    `case_no`             varchar(50)  DEFAULT NULL,
+    `mom_to_be_full_name` varchar(100) NOT NULL,
+    `dob`                 date         NOT NULL,
+    `email`               varchar(50)  NOT NULL,
+    `mobile_number`       varchar(20)  NOT NULL,
+    `expected_dod`        date         DEFAULT NULL,
+    `attending_gynae`     varchar(100) NOT NULL,
+    `other_gynae`         varchar(100) DEFAULT NULL,
+    `has_prev_delivery`   tinyint(1)   NOT NULL,
+    `preferred_hospital`  varchar(50)  NOT NULL,
+    `tour_type`           varchar(20)  NOT NULL,
+    `has_partner`         tinyint(1)   NOT NULL,
+    `preferred_date`      date         NOT NULL,
+    `preferred_timeslot`  varchar(100) NOT NULL,
+    `accept_marketing`    tinyint(1)   NOT NULL,
+    `source_domain`       varchar(100) NOT NULL,
+    `created_dt`          datetime     DEFAULT NULL,
+    `modified_dt`         datetime     DEFAULT NULL,
+    PRIMARY KEY (`uid`, `language_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
