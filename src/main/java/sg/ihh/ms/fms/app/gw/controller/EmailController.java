@@ -13,73 +13,73 @@ import sg.ihh.ms.fms.app.util.property.Property;
 
 public class EmailController extends BaseAPIController {
 
-    public EmailController() {
-        log = getLogger(this.getClass());
-    }
+	public EmailController() {
+		log = getLogger(this.getClass());
+	}
 
-    public boolean sendAppointmentBooking(AppointmentRequest appt, EmailTemplate et) {
-        final String methodName = "sendAppointmentBooking";
-        start(methodName);
+	public boolean sendAppointmentBooking(AppointmentRequest appt, EmailTemplate et) {
+		final String methodName = "sendAppointmentBooking";
+		start(methodName);
 
-        String subject = MailTemplateHelper.buildAppointmentBookingSubject(appt, et.getSubject());
-        String body = MailTemplateHelper.buildAppointmentBooking(appt, et.getTemplate());
+		String subject = MailTemplateHelper.buildAppointmentBookingSubject(appt, et.getSubject());
+		String body = MailTemplateHelper.buildAppointmentBooking(appt, et.getTemplate());
 
-        boolean sendEmailSuccessful = sendEmail(et, subject, body);
+		boolean sendEmailSuccessful = sendEmail(et, subject, body);
 
-        completed(methodName);
-        return sendEmailSuccessful;
-    }
+		completed(methodName);
+		return sendEmailSuccessful;
+	}
 
-    public boolean sendEnquiryAdministrator(EnquiryRequest enquiryRequest, EmailTemplate et) {
-        final String methodName = "sendEnquiryAdministrator";
-        start(methodName);
+	public boolean sendEnquiryAdministrator(EnquiryRequest enquiryRequest, EmailTemplate et) {
+		final String methodName = "sendEnquiryAdministrator";
+		start(methodName);
 
-        String subject = MailTemplateHelper.buildEnquirySubject(enquiryRequest, et.getSubject());
-        String body = MailTemplateHelper.buildEnquiry(enquiryRequest, et.getTemplate());
+		String subject = MailTemplateHelper.buildEnquirySubject(enquiryRequest, et.getSubject());
+		String body = MailTemplateHelper.buildEnquiry(enquiryRequest, et.getTemplate());
 
-        boolean sendEmailSuccessful = sendEmail(et, subject, body);
+		boolean sendEmailSuccessful = sendEmail(et, subject, body);
 
-        completed(methodName);
-        return sendEmailSuccessful;
-    }
+		completed(methodName);
+		return sendEmailSuccessful;
+	}
 
-    public boolean sendEnquiryPatient(EnquiryRequest enquiryRequest, EmailTemplate et) {
-        final String methodName = "sendEnquiryPatient";
-        start(methodName);
+	public boolean sendEnquiryPatient(EnquiryRequest enquiryRequest, EmailTemplate et) {
+		final String methodName = "sendEnquiryPatient";
+		start(methodName);
 
-        String subject = MailTemplateHelper.buildEnquirySubject(enquiryRequest, et.getSubject());
-        String body = MailTemplateHelper.buildEnquiry(enquiryRequest, et.getTemplate());
+		String subject = MailTemplateHelper.buildEnquirySubject(enquiryRequest, et.getSubject());
+		String body = MailTemplateHelper.buildEnquiry(enquiryRequest, et.getTemplate());
 
-        boolean sendEmailSuccessful = sendEmail(et, subject, body);
+		boolean sendEmailSuccessful = sendEmail(et, subject, body);
 
-        completed(methodName);
-        return sendEmailSuccessful;
-    }
+		completed(methodName);
+		return sendEmailSuccessful;
+	}
 
-    private boolean sendEmail(EmailTemplate et, String subject, String body) {
-        final String methodName = "sendEmail";
-        start(methodName);
-        HTTPRequest httpRequest = buildProtectedJsonAPIRequest(getProperty(Property.API_SEND_EMAIL_URL));
+	private boolean sendEmail(EmailTemplate et, String subject, String body) {
+		final String methodName = "sendEmail";
+		start(methodName);
+		HTTPRequest httpRequest = buildProtectedJsonAPIRequest(getProperty(Property.API_SEND_EMAIL_URL));
 
-        // Sender
-        SendEmailRequest emailRequest = new SendEmailRequest();
-        emailRequest.setSender(et.getSender());
+		// Sender
+		SendEmailRequest emailRequest = new SendEmailRequest();
+		emailRequest.setSender(et.getSender());
 
-        // Recipients
-        for (String recipient : et.getRecipients().split(",")) {
-            emailRequest.addRecipient(recipient.trim());
-        }
+		// Recipients
+		for (String recipient : et.getRecipients().split(",")) {
+			emailRequest.addRecipient(recipient.trim());
+		}
 
-        // Subject
-        emailRequest.setSubject(subject);
+		// Subject
+		emailRequest.setSubject(subject);
 
-        // Body
-        emailRequest.setBody(body);
+		// Body
+		emailRequest.setBody(body);
 
-        HTTPResponse httpResponse = HTTPClient.post(httpRequest, toJson(emailRequest));
-        logResponse(methodName, httpResponse);
+		HTTPResponse httpResponse = HTTPClient.post(httpRequest, toJson(emailRequest));
+		logResponse(methodName, httpResponse);
 
-        completed(methodName);
-        return httpResponse.getCode() == 200;
-    }
+		completed(methodName);
+		return httpResponse.getCode() == 200;
+	}
 }
