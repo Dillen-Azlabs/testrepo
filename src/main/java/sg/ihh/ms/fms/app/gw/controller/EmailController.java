@@ -26,7 +26,12 @@ public class EmailController extends BaseAPIController {
 
 		boolean sendEmailSuccessful = sendEmail(et, subject, body);
 
-		completed(methodName);
+		if (sendEmailSuccessful) {
+			completed(methodName);
+		} else {
+			failed(methodName);
+		}
+
 		return sendEmailSuccessful;
 	}
 
@@ -39,7 +44,12 @@ public class EmailController extends BaseAPIController {
 
 		boolean sendEmailSuccessful = sendEmail(et, subject, body);
 
-		completed(methodName);
+		if (sendEmailSuccessful) {
+			completed(methodName);
+		} else {
+			failed(methodName);
+		}
+
 		return sendEmailSuccessful;
 	}
 
@@ -52,7 +62,12 @@ public class EmailController extends BaseAPIController {
 
 		boolean sendEmailSuccessful = sendEmail(et, subject, body);
 
-		completed(methodName);
+		if (sendEmailSuccessful) {
+			completed(methodName);
+		} else {
+			failed(methodName);
+		}
+
 		return sendEmailSuccessful;
 	}
 
@@ -77,9 +92,17 @@ public class EmailController extends BaseAPIController {
 		emailRequest.setBody(body);
 
 		HTTPResponse httpResponse = HTTPClient.post(httpRequest, toJson(emailRequest));
-		logResponse(methodName, httpResponse);
 
-		completed(methodName);
+		// If httpResponse status ok it will be logged completed
+		// Else logged as failed.
+		if (httpResponse.getCode() == 200) {
+			logResponse(methodName, httpResponse);
+			completed(methodName);
+		} else {
+			logErrorResponse(methodName,httpResponse);
+			failed(methodName);
+		}
+
 		return httpResponse.getCode() == 200;
 	}
 }
