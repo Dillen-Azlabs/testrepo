@@ -26,6 +26,10 @@ public class BaseController {
         log.debug("[{}] Completed", methodName);
     }
 
+    protected void failed(String methodName) {
+        log.debug("[{}] Failed", methodName);
+    }
+
     protected String getProperty(String key) {
         return PropertyManager.getInstance().getProperty(key);
     }

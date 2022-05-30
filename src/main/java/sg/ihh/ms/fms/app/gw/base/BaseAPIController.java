@@ -47,6 +47,10 @@ public class BaseAPIController extends BaseController {
         log.debug(methodName, "Response :" + response.getCode() + " : " + toJson(response.getBody()));
     }
 
+    protected void logErrorResponse(String methodName, HTTPResponse response) {
+        log.error(methodName, "Response :" + response.getCode() + " : " + toJson(response.getBody()));
+    }
+
     protected void logRequest(String methodName, HTTPRequest request, Object obj) {
         log.debug(methodName, "Request URL : " + request.getUrl());
         log.debug(methodName, "Request Body : " + toJson(obj));
