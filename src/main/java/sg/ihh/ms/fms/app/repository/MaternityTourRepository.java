@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.jdbi.v3.core.Handle;
 import org.springframework.stereotype.Repository;
+import sg.ihh.ms.fms.app.rest.model.MaternityTourCancelRequest;
 import sg.ihh.ms.fms.app.rest.model.MaternityTourCreateRequest;
 import sg.ihh.ms.fms.app.rest.model.MaternityTourRescheduleRequest;
 
@@ -72,4 +73,29 @@ public class MaternityTourRepository extends BaseRepository {
 		return result;
 	}
 
+	public boolean cancel(MaternityTourCancelRequest request) {
+		final String methodName = "cancel";
+		start(methodName);
+
+		boolean result = false;
+
+		final String sql = "INSERT INTO maternity_tour_cancel_form (uid, language_code, case_no, email, reason, created_dt)" +
+				"VALUES(:uid, :languageCode, :caseNo, :email, :reason, :createdDt );";
+
+		request.setCreatedDt(new Date());
+
+		try (Handle handle = getHandle()) {
+			int row = handle.createUpdate(sql).bindBean(request).execute();
+
+			if (row != 0) {
+				result = true;
+			}
+
+		} catch (Exception ex) {
+			log.error(methodName, ex.getMessage());
+		}
+
+		completed(methodName);
+		return result;
+	}
 }
