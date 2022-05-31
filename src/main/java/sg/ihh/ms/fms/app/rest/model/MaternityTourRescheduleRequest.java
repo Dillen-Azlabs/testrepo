@@ -7,29 +7,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
-import java.util.Date;
 
-public class MaternityTourRescheduleRequest {
-    @JsonProperty("uid")
-    private String uid;
-
-    @JsonProperty("createdDt")
-    private Date createdDt;
-
-    @JsonProperty("modifiedDt")
-    private Date modifiedDt;
-
-    @JsonProperty("languageCode")
-    @NotBlank(message = "Language is mandatory")
-    private String languageCode;
-
-    @JsonProperty("caseNo")
-    private String caseNo;
-
-    @JsonProperty("email")
-    @Pattern(regexp = ".+@.+\\..+", message = "Allowed Value : email")
-    @NotBlank(message = "Email is mandatory")
-    private String email;
+public class MaternityTourRescheduleRequest extends MaternityTourBaseRequest{
 
     @JsonProperty("preferredHospital")
     @Pattern(regexp = "^(?:GEH|MEH|MNH|PEH)$", message = "Allowed Values : GEH, MEH, MNH  or PEH")
@@ -54,38 +33,6 @@ public class MaternityTourRescheduleRequest {
     @Pattern(regexp = "^(0[1-9]|[12][0-9]|3[01])[-](0[1-9]|1[012])[-](19|20)\\d\\d$", message = "Allowed Value : DD-MM-YYYY")
     @NotBlank(message = "Preferred Date is mandatory")
     private String preferredDate;
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getLanguageCode() {
-        return languageCode;
-    }
-
-    public void setLanguageCode(String languageCode) {
-        this.languageCode = languageCode;
-    }
-
-    public String getCaseNo() {
-        return caseNo;
-    }
-
-    public void setCaseNo(String caseNo) {
-        this.caseNo = caseNo;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getPreferredHospital() {
         return preferredHospital;
@@ -117,22 +64,6 @@ public class MaternityTourRescheduleRequest {
 
     public void setPreferredTimeslot(String preferredTimeslot) {
         this.preferredTimeslot = preferredTimeslot;
-    }
-
-    public Date getCreatedDt() {
-        return createdDt;
-    }
-
-    public void setCreatedDt(Date createdDt) {
-        this.createdDt = createdDt;
-    }
-
-    public Date getModifiedDt() {
-        return modifiedDt;
-    }
-
-    public void setModifiedDt(Date modifiedDt) {
-        this.modifiedDt = modifiedDt;
     }
 
     public LocalDate getPreferredDateDB() {
