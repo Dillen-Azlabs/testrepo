@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.jdbi.v3.core.Handle;
 import org.springframework.stereotype.Repository;
-import sg.ihh.ms.fms.app.rest.model.MaternityTourFormRequest;
+import sg.ihh.ms.fms.app.rest.model.MaternityTourCreateRequest;
 import sg.ihh.ms.fms.app.rest.model.MaternityTourRescheduleRequest;
 
 @Repository
@@ -14,7 +14,7 @@ public class MaternityTourRepository extends BaseRepository {
 		log = getLogger(this.getClass());
 	}
 
-	public boolean create(MaternityTourFormRequest request) {
+	public boolean create(MaternityTourCreateRequest request) {
 		final String methodName = "create";
 		start(methodName);
 
