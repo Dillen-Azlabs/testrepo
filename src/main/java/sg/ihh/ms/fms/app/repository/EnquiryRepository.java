@@ -36,7 +36,6 @@ public class EnquiryRepository extends BaseRepository {
         } catch (Exception ex) {
             log.error(methodName, ex.getMessage());
         }
-        log.debug(methodName, "CREATE STATUS: " + result);
 
         completed(methodName);
         return result;
