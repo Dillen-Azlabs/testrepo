@@ -26,8 +26,8 @@ public class MaternityTourService extends BaseService {
 	}
 
 	@PostMapping("create")
-	public BaseResponse makeTourForm(@RequestBody @Valid MaternityTourFormRequest request) {
-		final String methodName = "createForm";
+	public BaseResponse createTour(@RequestBody @Valid MaternityTourCreateRequest request) {
+		final String methodName = "createTour";
 		start(methodName);
 
 		BaseResponse response = new BaseResponse(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -37,7 +37,7 @@ public class MaternityTourService extends BaseService {
 		boolean status = maternityTourRepository.create(request);
 
 		if (status) {
-			response = new MaternityTourFormResponse(HttpStatus.OK, uid);
+			response = new MaternityTourCreateResponse(HttpStatus.OK, uid);
 		}
 
 		completed(methodName);
