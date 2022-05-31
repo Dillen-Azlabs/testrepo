@@ -62,4 +62,23 @@ public class MaternityTourService extends BaseService {
 		completed(methodName);
 		return response;
 	}
+
+	@PostMapping("cancel")
+	public BaseResponse cancelTour(@RequestBody @Valid MaternityTourCancelRequest request) {
+		final String methodName = "cancelTour";
+		start(methodName);
+
+		BaseResponse response = new BaseResponse(HttpStatus.INTERNAL_SERVER_ERROR);
+		String uid = UUID.randomUUID().toString();
+		request.setUid(uid);
+
+		boolean status = maternityTourRepository.cancel(request);
+
+		if(status) {
+			response = new BaseResponse(HttpStatus.OK);
+		}
+
+		completed(methodName);
+		return response;
+	}
 }
