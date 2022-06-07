@@ -28,12 +28,12 @@ public class AppointmentRepository extends BaseRepository {
                 "patient_dob, patient_gender, patient_id_type, patient_id_value, patient_nationality, patient_cor, " +
                 "nearest_office, patient_email, patient_contact, patient_contact_country, preferred_doctor, " +
                 "medpro_url, specialty, reason, preferred_date, preferred_timeslot, hospital_source, source_url, " +
-                "receive_marketing, created_dt) " +
+                "receive_marketing, created_dt, pdpa_declaration) " +
                 "VALUES(:uid, :languageCode, :bookingFor, :caregiverFullName, :caregiverCountry, :caregiverEmail, " +
                 " :caregiverContact, :caregiverContactCountry, :patientFullName, :patientDobDB, :patientGender, " +
                 " :patientIdType, :patientIdValue, :patientNationality, :patientCountry, :nearestOffice, " +
                 " :patientEmail, :patientContact, :patientContactCountry, :preferredDoctor, :medicalProfessionalURL, :specialty, :reason, " +
-                " :preferredDateDB, :preferredTimeslot, :hospitalSource, :sourceUrl, :receiveMarketing, :createdDt);";
+                " :preferredDateDB, :preferredTimeslot, :hospitalSource, :sourceUrl, :receiveMarketing, :createdDt, :pdpaDeclaration);";
 
         appt.setCreatedDt(new Date());
 
