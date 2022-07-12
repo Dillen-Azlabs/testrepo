@@ -23,8 +23,9 @@ public class EmailController extends BaseAPIController {
 
 		String subject = MailTemplateHelper.buildAppointmentBookingSubject(appt, et.getSubject());
 		String body = MailTemplateHelper.buildAppointmentBooking(appt, et.getTemplate());
+		String from = appt.getPatientEmail();
 
-		boolean sendEmailSuccessful = sendEmail(et, subject, body);
+		boolean sendEmailSuccessful = sendEmail(et, subject, body, from);
 
 		if (sendEmailSuccessful) {
 			completed(methodName);
@@ -42,7 +43,7 @@ public class EmailController extends BaseAPIController {
 		String subject = MailTemplateHelper.buildEnquirySubject(enquiryRequest, et.getSubject());
 		String body = MailTemplateHelper.buildEnquiry(enquiryRequest, et.getTemplate());
 
-		boolean sendEmailSuccessful = sendEmail(et, subject, body);
+		boolean sendEmailSuccessful = sendEmail(et, subject, body, null);
 
 		if (sendEmailSuccessful) {
 			completed(methodName);
@@ -60,7 +61,7 @@ public class EmailController extends BaseAPIController {
 		String subject = MailTemplateHelper.buildEnquirySubject(enquiryRequest, et.getSubject());
 		String body = MailTemplateHelper.buildEnquiry(enquiryRequest, et.getTemplate());
 
-		boolean sendEmailSuccessful = sendEmail(et, subject, body);
+		boolean sendEmailSuccessful = sendEmail(et, subject, body, null);
 
 		if (sendEmailSuccessful) {
 			completed(methodName);
@@ -71,14 +72,23 @@ public class EmailController extends BaseAPIController {
 		return sendEmailSuccessful;
 	}
 
-	private boolean sendEmail(EmailTemplate et, String subject, String body) {
+	private boolean sendEmail(EmailTemplate et, String subject, String body, String patientEmail) {
 		final String methodName = "sendEmail";
 		start(methodName);
 		HTTPRequest httpRequest = buildProtectedJsonAPIRequest(getProperty(Property.API_SEND_EMAIL_URL));
 
 		// Sender
 		SendEmailRequest emailRequest = new SendEmailRequest();
-		emailRequest.setSender(et.getSender());
+
+		if(patientEmail == null){
+			emailRequest.setSender(et.getSender());
+			log.debug(methodName, et.getSender());
+		}
+		else {
+			emailRequest.setSender(patientEmail);
+			log.debug(methodName, patientEmail);
+		}
+
 
 		// Recipients
 		for (String recipient : et.getRecipients().split(",")) {
