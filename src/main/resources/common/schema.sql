@@ -33,6 +33,8 @@ CREATE TABLE `appointment_form` (
                                     `receive_marketing`   varchar(3)   NOT NULL,
                                     `created_dt`          datetime     DEFAULT NULL,
                                     `modified_dt`         datetime     DEFAULT NULL,
+                                    `medpro_url`         varchar(100) DEFAULT NULL,
+                                    `pdpa_declaration`   varchar(3)   NOT NULL,
                                     PRIMARY KEY (`uid`, `language_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -72,6 +74,8 @@ CREATE TABLE `enquiry_form` (
                                 `receive_marketing`   varchar(3)   NOT NULL,
                                 `created_dt`          datetime     DEFAULT NULL,
                                 `modified_dt`         datetime     DEFAULT NULL,
+                                `country_code`        varchar(5)  NOT NULL,
+                                `pdpa_declaration`    varchar(3)  NOT NULL,
                                 PRIMARY KEY (`uid`, `language_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -105,7 +109,35 @@ CREATE TABLE `maternity_tour_create_form` (
     `source_domain`       varchar(100) NOT NULL,
     `created_dt`          datetime     DEFAULT NULL,
     `modified_dt`         datetime     DEFAULT NULL,
+    `country_code`       varchar(5)   NOT NULL,
+    `accept_pdpa`        tinyint(1)   DEFAULT NULL,
     PRIMARY KEY (`uid`, `language_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `maternity_tour_cancel_form` (
+      `uid`               varchar(36)  NOT NULL,
+      `language_code`     varchar(5)   NOT NULL,
+      `case_no`           varchar(50)  DEFAULT NULL,
+      `email`             varchar(50)  NOT NULL,
+      `reason`            varchar(500) DEFAULT NULL,
+      `created_dt`        datetime     DEFAULT NULL,
+      `modified_dt`        datetime     DEFAULT NULL,
+      PRIMARY KEY (`uid`,`language_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+
+CREATE TABLE `maternity_tour_reschedule_form` (
+      `uid`                varchar(36) NOT NULL,
+      `language_code`      varchar(5) NOT NULL,
+      `case_no`            varchar(50) DEFAULT NULL,
+      `email`              varchar(50) NOT NULL,
+      `preferred_hospital` varchar(50) NOT NULL,
+      `tour_type`          varchar(20) NOT NULL,
+      `has_partner`        tinyint(1) NOT NULL,
+      `preferred_date`     date NOT NULL,
+      `preferred_timeslot` varchar(100) NOT NULL,
+      `created_dt`         datetime DEFAULT NULL,
+      `modified_dt`         datetime DEFAULT NULL,
+      PRIMARY KEY (`uid`,`language_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
