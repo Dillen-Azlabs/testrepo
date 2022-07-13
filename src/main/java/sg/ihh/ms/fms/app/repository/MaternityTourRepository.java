@@ -23,10 +23,10 @@ public class MaternityTourRepository extends BaseRepository {
 
 		final String sql = "INSERT INTO maternity_tour_create_form (uid, language_code, case_no, mom_to_be_full_name, dob, " +
 				"email, mobile_number, expected_dod, attending_gynae, other_gynae, has_prev_delivery, preferred_hospital,  " +
-				"tour_type, has_partner, preferred_date, preferred_timeslot, accept_marketing, source_domain, created_dt) " +
+				"tour_type, has_partner, preferred_date, preferred_timeslot, accept_marketing, source_domain, created_dt, country_code, accept_pdpa) " +
 				"VALUES(:uid, :languageCode, :caseNo, :momToBeFullName, :dobDB, :email, :mobileNumber, :expectedDodDB, " +
 				":attendingGynae, :otherGynae, :hasPrevDelivery, :preferredHospital, :tourType, :hasPartner, :preferredDateDB,  " +
-				":preferredTimeslot, :acceptMarketing, :sourceDomain, :createdDt);";
+				":preferredTimeslot, :acceptMarketing, :sourceDomain, :createdDt, :countryCode, :acceptPdpa );";
 
 		request.setCreatedDt(new Date());
 
