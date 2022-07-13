@@ -21,9 +21,9 @@ public class EnquiryRepository extends BaseRepository {
         boolean result = false;
 
         final String sql = "INSERT INTO enquiry_form (uid, language_code, full_name, email, mobile_number, cor, " +
-                "nearest_office, enquiry, hospital_source, source_url, receive_marketing, created_dt) " +
+                "nearest_office, enquiry, hospital_source, source_url, receive_marketing, created_dt, country_code, pdpa_declaration) " +
                 "VALUES(:uid, :languageCode, :fullName, :email, :mobileNumber, :cor, :nearestOffice, :enquiry, " +
-                ":hospitalSource, :sourceUrl, :receiveMarketing, :createdDt);";
+                ":hospitalSource, :sourceUrl, :receiveMarketing, :createdDt, :countryCode, :pdpaDeclaration );";
 
         enquiryRequest.setCreatedDt(new Date());
 
