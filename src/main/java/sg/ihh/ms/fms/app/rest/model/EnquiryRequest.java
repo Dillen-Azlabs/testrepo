@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -60,6 +61,16 @@ public class EnquiryRequest {
     @Pattern(regexp = "^(?:Yes|No)$", message = "Allowed Values : Yes or No")
     @NotBlank(message = "Receive Marketing is mandatory")
     private String receiveMarketing;
+
+    @JsonProperty("countryCode")
+    @NotBlank(message = "Country Code is mandatory")
+    @Size(max = 5, message = "Allowed Value max 5")
+    private String countryCode;
+
+    @JsonProperty("pdpaDeclaration")
+    @Pattern(regexp = "^(?:Yes|No)$", message = "Allowed Values : Yes or No")
+    @NotBlank(message = "pdpaDeclaration is mandatory")
+    private String pdpaDeclaration;
 
     public EnquiryRequest() {
         // Empty Constructor
@@ -167,5 +178,21 @@ public class EnquiryRequest {
 
     public void setModifiedDt(Date modifiedDt) {
         this.modifiedDt = modifiedDt;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public String getPdpaDeclaration() {
+        return pdpaDeclaration;
+    }
+
+    public void setPdpaDeclaration(String pdpaDeclaration) {
+        this.pdpaDeclaration = pdpaDeclaration;
     }
 }
