@@ -6,6 +6,7 @@ import sg.ihh.ms.fms.app.util.date.DateUtil;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class MaternityTourCreateRequest extends MaternityTourBaseRequest{
@@ -18,6 +19,15 @@ public class MaternityTourCreateRequest extends MaternityTourBaseRequest{
 	@JsonProperty("mobileNumber")
 	@NotBlank(message = "Mobile Number is mandatory")
 	private String mobileNumber;
+
+	@JsonProperty("countryCode")
+	@NotBlank(message = "Country Code is mandatory")
+	@Size(max = 5, message = "Allowed Value max 5")
+	private String countryCode;
+
+	@JsonProperty("acceptPdpa")
+	@NotNull(message = "accept pdpa is mandatory")
+	private boolean acceptPdpa;
 
 	@JsonProperty("attendingGynae")
 	@Pattern(regexp = "^[a-zA-Z@',. -]+$", message = "Allowed Value : alphabets and symbols")
@@ -79,6 +89,22 @@ public class MaternityTourCreateRequest extends MaternityTourBaseRequest{
 
 	public void setMomToBeFullName(String momToBeFullName) {
 		this.momToBeFullName = momToBeFullName;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+	public boolean isAcceptPdpa() {
+		return acceptPdpa;
+	}
+
+	public void setAcceptPdpa(boolean acceptPdpa) {
+		this.acceptPdpa = acceptPdpa;
 	}
 
 	public String getMobileNumber() {
