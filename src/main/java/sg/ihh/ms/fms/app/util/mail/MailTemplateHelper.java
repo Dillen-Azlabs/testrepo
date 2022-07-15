@@ -100,7 +100,7 @@ public class MailTemplateHelper {
 			// Enquiry Details
 			text = text.replace("${fullName}",              StringHelper.emptyIfNull(enquiryRequest.getFullName()));
 			text = text.replace("${email}",                 StringHelper.emptyIfNull(enquiryRequest.getEmail()));
-			text = text.replace("${mobileNumber}",          StringHelper.emptyIfNull(enquiryRequest.getMobileNumber()));
+			text = text.replace("${mobileNumber}",          StringHelper.emptyIfNull(enquiryRequest.getCountryCode() + enquiryRequest.getMobileNumber()));
 			text = text.replace("${cor}",                   StringHelper.emptyIfNull(enquiryRequest.getCor()));
 			text = text.replace("${nearestOffice}",         StringHelper.emptyIfNull(enquiryRequest.getNearestOffice()));
 
